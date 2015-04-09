@@ -1,17 +1,20 @@
 <?php
-/**
- * @package Cleaner WP Header
- * @version 0.1.1
- */
 /*
 Plugin Name: Cleaner WP Header
-Plugin URI: http://wordpress.org
+Plugin URI: https://github.com/nlk-plugins/cleaner-wp-header
 Description: Blindly removes some default tags that WordPress puts in the header area, like feed_links, rsd_link, shortlink, wp_generator, rel_canonical, etc based off https://scotch.io/?p=1062
-Author: alex chousmith
-Version: 0.1.1
+Version: 0.1.2
+Author: Ninthlink, Inc.
 Author URI: http://www.ninthlink.com
+License: GPLv2 or later
 */
 
+/**
+ * Hook to wp_head
+ *
+ * After actions have been added, but before they trigger,
+ * to remove action hooks so things don't happen.
+ */
 function cleaner_wp_header_please() {
 	// Display the links to the extra feeds such as category feeds
 	remove_action( 'wp_head', 'feed_links_extra', 3 );
@@ -37,4 +40,3 @@ function cleaner_wp_header_please() {
 	remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 }
 add_action( 'wp_head', 'cleaner_wp_header_please', 0 );
-?>
